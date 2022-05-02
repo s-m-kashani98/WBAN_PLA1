@@ -5,8 +5,19 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-iniFile = "/home/moh/Documents/PhD/research/Castalia/Simulations/BANtest/omnetpp.ini"
-Castalia_BAN_Test_Path = "/home/moh/Documents/PhD/research/Castalia/Simulations/BANtest"
+
+working_Path = os.getcwd().split('/')
+del(working_Path[-1])
+working_Path = '/'.join(working_Path)
+# working_Path = "/home/moh/Documents/PhD/research/WBAN_PLA1"
+
+print(working_Path)
+Castalia_BAN_Test_Path = working_Path + "/Castalia/Simulations/BANtest"
+iniFile = Castalia_BAN_Test_Path + "/omnetpp.ini"
+
+analyzer_Path = working_Path + "/analyzer"
+print(analyzer_Path,working_Path)
+image_Path = analyzer_Path+"/img"
 numNodes = 8
 Hub = 6
 attacker =7
@@ -132,8 +143,9 @@ SN.node[7].Application.packet_rate = 1"""
     f.write(x)
     f.close()
 
-    os.system("cd " + Castalia_BAN_Test_Path + """; rm 2*;
-    rm Castalia-Trace.txt;../../bin/Castalia -c General;echo >>Castalia-Trace.txt; echo "";echo \"endendend\">> Castalia-Trace.txt""")
+    os.system("cd " + Castalia_BAN_Test_Path + "; rm 2*; rm Castalia-Trace.txt;")
+    
+    os.system("cd " + Castalia_BAN_Test_Path + ";../../bin/Castalia -c General; echo >>Castalia-Trace.txt; echo "";echo \"endendend\">> Castalia-Trace.txt")
 
 
 
@@ -149,7 +161,7 @@ SN.node[7].Application.packet_rate = 1"""
 
 
 header = ["accuracy", "F1_Score", "FPR" ,"AUC"]
-dataSet = open("img/dataSet.csv","w")
+dataSet = open(image_Path + "/dataSet.csv","w")
 csvWriter = csv.writer(dataSet)
 csvWriter.writerow(header)
 repeat = 10
@@ -157,7 +169,7 @@ for i in range(repeat):
     print(str(i+1)+ " out of "+ str(repeat)+":")
     coor = nodePlacement(good =goodRange,bad = badRange,hub=hubRange)
     run(coor)
-    os.system("cd /home/moh/Documents/PhD/research/analyzer; rm dataSet.csv;python3 analyzer.py;")
+    os.system("cd "+ analyzer_Path +"; rm dataSet.csv;python3 analyzer.py;")
     
     
     
@@ -191,7 +203,7 @@ for i in range(repeat):
     plt.plot(1.5,1.5)
             
 
-    plt.savefig("/home/moh/Documents/PhD/research/analyzer/img/F_Score:"+ str(round(f_score,3))+ ":FPR:"+ str(round(FPR,3))+":.jpg")
+    plt.savefig(image_Path + "/F_Score:"+ str(round(f_score,3))+ ":FPR:"+ str(round(FPR,3))+":.jpg")
     plt.close()
 
 

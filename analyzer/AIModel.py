@@ -26,11 +26,20 @@ from imblearn.over_sampling import SMOTE
 from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import RepeatedStratifiedKFold
 
+import os
+
+# working_Path = os.getcwd().split('/')
+# del(working_Path[-1])
+# working_Path = '/'.join(working_Path)
+# # working_Path = "/home/moh/Documents/PhD/research/WBAN_PLA1"
+analyzer_Path  = os.getcwd() 
+
+
 def AITrain(Predictors):
     """col_names = ["RSSI_AVG","RSSI_MIN","RSSI_MAX","RSSI_range","RSSI_STD","blckRate","pcktTime","badNode","Node"]"""
     max_depth = 16
 
-    df = pd.read_csv(r'dataSet.csv')
+    df = pd.read_csv(analyzer_Path + '/dataSet.csv')
     
     target_para = ['Node']
 
@@ -66,7 +75,7 @@ def AITrain(Predictors):
     print("Accuracy\n",accuracy_score(y_true=y_test,y_pred=y_pred))
 
     plot_confusion_matrix(clf, x_test, y_test)
-    plt.savefig("/home/moh/Documents/PhD/research/analyzer/img/conf/mat"+str(accuracy_score(y_true=y_test,y_pred=y_pred))+".png")
+    plt.savefig(analyzer_Path+"/img/conf/mat"+str(accuracy_score(y_true=y_test,y_pred=y_pred))+".png")
     plt.close()
     
     y_pred = nodes_toBadGoodNodes(y_pred)

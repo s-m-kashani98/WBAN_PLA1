@@ -11,19 +11,19 @@ OMNETPP_EDITION = Academic Public License -- NOT FOR COMMERCIAL USE
 #
 # Directories
 #
-OMNETPP_ROOT = /home/moh/Documents/PhD/research/omnetpp-4.6
-OMNETPP_BIN_DIR = /home/moh/Documents/PhD/research/omnetpp-4.6/bin
-OMNETPP_INCL_DIR = /home/moh/Documents/PhD/research/omnetpp-4.6/include
-OMNETPP_LIB_DIR = /home/moh/Documents/PhD/research/omnetpp-4.6/lib
-OMNETPP_OUT_DIR = /home/moh/Documents/PhD/research/omnetpp-4.6/out
-OMNETPP_IMAGE_PATH = ./bitmaps;./images;/home/moh/Documents/PhD/research/omnetpp-4.6/images
+OMNETPP_ROOT = /home/moh/Documents/PhD/research/WBAN_PLA1/omnetpp-4.6
+OMNETPP_BIN_DIR = /home/moh/Documents/PhD/research/WBAN_PLA1/omnetpp-4.6/bin
+OMNETPP_INCL_DIR = /home/moh/Documents/PhD/research/WBAN_PLA1/omnetpp-4.6/include
+OMNETPP_LIB_DIR = /home/moh/Documents/PhD/research/WBAN_PLA1/omnetpp-4.6/lib
+OMNETPP_OUT_DIR = /home/moh/Documents/PhD/research/WBAN_PLA1/omnetpp-4.6/out
+OMNETPP_IMAGE_PATH = ./bitmaps;./images;/home/moh/Documents/PhD/research/WBAN_PLA1/omnetpp-4.6/images
 
-OMNETPP_SRC_DIR = /home/moh/Documents/PhD/research/omnetpp-4.6/src
-OMNETPP_UI_DIR = /home/moh/Documents/PhD/research/omnetpp-4.6/ui
-OMNETPP_UTILS_DIR = /home/moh/Documents/PhD/research/omnetpp-4.6/src/utils
-OMNETPP_DOC_DIR = /home/moh/Documents/PhD/research/omnetpp-4.6/doc
-OMNETPP_SAMPLES_DIR = /home/moh/Documents/PhD/research/omnetpp-4.6/samples
-OMNETPP_TEST_DIR = /home/moh/Documents/PhD/research/omnetpp-4.6/test
+OMNETPP_SRC_DIR = /home/moh/Documents/PhD/research/WBAN_PLA1/omnetpp-4.6/src
+OMNETPP_UI_DIR = /home/moh/Documents/PhD/research/WBAN_PLA1/omnetpp-4.6/ui
+OMNETPP_UTILS_DIR = /home/moh/Documents/PhD/research/WBAN_PLA1/omnetpp-4.6/src/utils
+OMNETPP_DOC_DIR = /home/moh/Documents/PhD/research/WBAN_PLA1/omnetpp-4.6/doc
+OMNETPP_SAMPLES_DIR = /home/moh/Documents/PhD/research/WBAN_PLA1/omnetpp-4.6/samples
+OMNETPP_TEST_DIR = /home/moh/Documents/PhD/research/WBAN_PLA1/omnetpp-4.6/test
 
 #
 # Make "debug" the default mode
@@ -92,7 +92,7 @@ RANLIB = ranlib
 SHLIB_LD = g++ -shared -fPIC
 DLLTOOL = dlltool
 STRIP = strip
-WISH = 
+WISH = wish
 MAKEDEPEND = opp_makedep -Y --objdirtree
 LN = ln -sf
 MKPATH = mkdir -p
@@ -117,10 +117,10 @@ endif
 SHARED_LIB_SUFFIX = $(SO_LIB_SUFFIX)
 
 SYSTEMC= no
-NO_TCL = 1
+NO_TCL = 
 HAVE_DLOPEN = 1
-TK_CFLAGS = 
-TK_LIBS = 
+TK_CFLAGS = -I/usr/include/tcl8.6
+TK_LIBS = -ltk8.6 -ltcl8.6
 ZLIB_CFLAGS = 
 ZLIB_LIBS = -lz
 HAVE_MPI = no
@@ -140,11 +140,11 @@ XML_LIBS = -lxml2
 AKAROA_CFLAGS = -I/usr/local/akaroa/include
 AKAROA_LIBS = -L/usr/local/akaroa/lib -lakaroa -lfl
 
-TKENV_IF_POSSIBLE = missing-dependency
+TKENV_IF_POSSIBLE = tkenv
 JNILIBS_IF_POSSIBLE = missing-dependency
 
 EMBED_TCL_CODE = yes
-OMNETPP_TKENV_DIR = /home/moh/Documents/PhD/research/omnetpp-4.6/src/tkenv
+OMNETPP_TKENV_DIR = /home/moh/Documents/PhD/research/WBAN_PLA1/omnetpp-4.6/src/tkenv
 
 WITH_NETBUILDER = yes
 WITH_PARSIM = yes
@@ -157,7 +157,7 @@ PLATFORM = linux.x86_64
 #
 # Definitions for makemake-generated makefiles
 #
-ALL_ENV_LIBS = $(CMDENV_LIBS)
+ALL_ENV_LIBS = $(TKENV_LIBS) $(CMDENV_LIBS)
 CMDENV_LIBS = -Wl,-u,_cmdenv_lib $(AS_NEEDED_OFF) -loppcmdenv$D -loppenvir$D
 TKENV_LIBS = -Wl,-u,_tkenv_lib $(AS_NEEDED_OFF) -lopptkenv$D -loppenvir$D -lopplayout$D
 KERNEL_LIBS = -loppsim$D

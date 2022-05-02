@@ -1,7 +1,15 @@
-import csv
+import csv,os
 from os import error
 
 from numpy.core.fromnumeric import std
+
+
+working_Path = os.getcwd().split('/')
+del(working_Path[-1])
+working_Path = '/'.join(working_Path)
+# working_Path = "/home/moh/Documents/PhD/research/WBAN_PLA1"
+
+Castalia_BAN_Test_Path = working_Path + "/Castalia/Simulations/BANtest"
 
 
 header = ["RSSI_AVG","RSSI_MIN","RSSI_MAX","RSSI_range","RSSI_STD","blckRate","pcktTime","badNode","Node"]
@@ -13,7 +21,7 @@ dataSet = open("dataSet.csv","w")
 csvWriter = csv.writer(dataSet)
 csvWriter.writerow(header)
 
-f = open("/home/moh/Documents/PhD/research/Castalia/Simulations/BANtest/Castalia-Trace.txt", "r")
+f = open(Castalia_BAN_Test_Path+"/Castalia-Trace.txt", "r")
 
 
 time = 0
